@@ -211,20 +211,9 @@ bun x wrangler login
 bun x wrangler d1 create indonesian_holidays
 ```
 
-Copy the `database_id` from the output and paste it into `wrangler.jsonc`:
+Open `wrangler.jsonc` and replace `database_id` with the ID from the previous step. Also update `vars.API_BASE_URL` and `routes` to match your own domain or Worker URL.
 
-```jsonc
-{
-  "d1_databases": [
-    {
-      "binding": "DB",
-      "database_name": "indonesian_holidays",
-      "database_id": "YOUR_DATABASE_ID_HERE",
-      "migrations_dir": "drizzle"
-    }
-  ]
-}
-```
+> **Note:** `database_id` is not a secret — it cannot be used to access your data without your Cloudflare API token. It is safe to commit.
 
 ### Apply migration and seed data
 

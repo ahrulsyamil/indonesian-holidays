@@ -55,7 +55,10 @@ bun install
 # 3. Create your local D1 database (once only)
 bun x wrangler login
 bun x wrangler d1 create indonesian_holidays
-# Copy the database_id into wrangler.jsonc
+
+# Open wrangler.jsonc and replace database_id with your own ID from the step above.
+# Also update vars.API_BASE_URL and routes to match your Worker URL or custom domain.
+# See wrangler.local.jsonc.example for a reference of what to change.
 
 # 4. Apply the initial migration
 bun run db:migrate:local

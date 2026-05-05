@@ -8,11 +8,22 @@
     "enabled": true
   },
   "vars": {
+    // Your deployed Worker URL or custom domain.
+    // Used as the OpenAPI servers.url value.
     "API_BASE_URL": "https://indonesian-holidays.ahrulsyamil.com"
   },
-  // D1 database binding
-  // Run: bun x wrangler d1 create indonesian_holidays
-  // Then fill in the database_id below
+  "workers_dev": false,
+  "routes": [
+    {
+      "pattern": "indonesian-holidays.ahrulsyamil.com",
+      "zone_name": "ahrulsyamil.com",
+      "custom_domain": true
+    }
+  ],
+  // D1 database binding.
+  // database_id is NOT a secret — it cannot be used without your Cloudflare API token.
+  // Contributors: run `bun x wrangler d1 create indonesian_holidays` and replace
+  // the database_id below with your own.
   "d1_databases": [
     {
       "binding": "DB",

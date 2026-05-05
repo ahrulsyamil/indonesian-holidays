@@ -1,0 +1,31 @@
+{
+  // This file shows what to change in wrangler.jsonc when you fork this project
+  // and deploy your own instance. Replace the values below in wrangler.jsonc directly.
+  //
+  // NOTE: wrangler.local.jsonc auto-merge is NOT supported by Wrangler.
+  // There is only one active config file: wrangler.jsonc.
+
+  "vars": {
+    // Change this to your own deployed Worker URL or custom domain.
+    "API_BASE_URL": "https://your-worker.workers.dev"
+  },
+  "routes": [
+    // Remove this block entirely if you're using the default *.workers.dev URL.
+    // If you have a custom domain in Cloudflare, fill in your own values:
+    {
+      "pattern": "your-domain.example.com",
+      "zone_name": "example.com",
+      "custom_domain": true
+    }
+  ],
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "indonesian_holidays",
+      // Run: bun x wrangler d1 create indonesian_holidays
+      // Replace the database_id in wrangler.jsonc with your own.
+      "database_id": "YOUR_D1_DATABASE_ID",
+      "migrations_dir": "drizzle"
+    }
+  ]
+}
