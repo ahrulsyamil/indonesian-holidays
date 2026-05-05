@@ -3,9 +3,7 @@
   "name": "indonesian-holidays",
   "main": "src/index.ts",
   "compatibility_date": "2025-05-01",
-  "compatibility_flags": [
-    "nodejs_compat"
-  ],
+  "compatibility_flags": ["nodejs_compat"],
   "observability": {
     "enabled": true
   },
