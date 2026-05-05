@@ -3,9 +3,14 @@
   "name": "indonesian-holidays",
   "main": "src/index.ts",
   "compatibility_date": "2025-05-01",
-  "compatibility_flags": ["nodejs_compat"],
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
   "observability": {
     "enabled": true
+  },
+  "vars": {
+    "API_BASE_URL": "https://indonesian-holidays.ahrulsyamil.com"
   },
   // D1 database binding
   // Run: bun x wrangler d1 create indonesian_holidays

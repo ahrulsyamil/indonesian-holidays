@@ -1,7 +1,16 @@
 import { apiReference } from "@scalar/hono-api-reference";
+import type { Context } from "hono";
 import { Hono } from "hono";
+import type { Bindings } from "../env";
 
-const router = new Hono();
+const router = new Hono<{ Bindings: Bindings }>();
+
+function getOpenApiServerUrl(c: Context<{ Bindings: Bindings }>) {
+  if (c.env.API_BASE_URL) {
+    return c.env.API_BASE_URL;
+  }
+  return new URL(c.req.url).origin;
+}
 
 // OpenAPI spec — generated inline (simple version without zod-openapi codegen)
 router.get("/openapi.json", (c) => {
@@ -14,11 +23,11 @@ router.get("/openapi.json", (c) => {
         "Public REST API for Indonesian national holidays (hari libur nasional) and joint leave days (cuti bersama).",
       contact: {
         name: "Indonesian Holidays API",
-        url: "https://github.com/your-username/indonesian-holidays",
+        url: "https://github.com/ahrulsyamil/indonesian-holidays",
       },
       license: { name: "MIT" },
     },
-    servers: [{ url: "https://indonesian-holidays.workers.dev", description: "Production" }],
+    servers: [{ url: getOpenApiServerUrl(c), description: "Server URL" }],
     tags: [
       { name: "Holidays", description: "Holiday data endpoints" },
       { name: "Sources", description: "Official sources and references (SKB, Keppres, etc.)" },

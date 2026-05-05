@@ -129,3 +129,36 @@ describe("GET /holidays/:year/:month includes sources in meta", () => {
     expect(body.meta.sources).toHaveLength(1);
   });
 });
+
+describe("metadata URLs", () => {
+  it("root endpoint exposes repository URL", async () => {
+    const res = await app.request("/", {}, env);
+    expect(res.status).toBe(200);
+    const body = await res.json<{ source: string }>();
+    expect(body.source).toBe("https://github.com/ahrulsyamil/indonesian-holidays");
+  });
+
+  it("openapi contact URL points to repository", async () => {
+    const res = await app.request("/openapi.json", {}, env);
+    expect(res.status).toBe(200);
+    const body = await res.json<{ info: { contact: { url: string } } }>();
+    expect(body.info.contact.url).toBe("https://github.com/ahrulsyamil/indonesian-holidays");
+  });
+
+  it("openapi server URL uses request origin when API_BASE_URL is not set", async () => {
+    const req = new Request("https://api.test.example/openapi.json");
+    const localEnv = { ...env, API_BASE_URL: undefined };
+    const res = await app.request(req, {}, localEnv);
+    expect(res.status).toBe(200);
+    const body = await res.json<{ servers: Array<{ url: string }> }>();
+    expect(body.servers[0]?.url).toBe("https://api.test.example");
+  });
+
+  it("openapi server URL uses API_BASE_URL override when provided", async () => {
+    const localEnv = { ...env, API_BASE_URL: "https://api.indonesian-holidays.dev" };
+    const res = await app.request("/openapi.json", {}, localEnv);
+    expect(res.status).toBe(200);
+    const body = await res.json<{ servers: Array<{ url: string }> }>();
+    expect(body.servers[0]?.url).toBe("https://api.indonesian-holidays.dev");
+  });
+});
