@@ -1,0 +1,81 @@
+name: Holiday Data Check
+
+on:
+  # Run on the 1st of every month at 09:00 UTC (16:00 WIB)
+  schedule:
+    - cron: "0 9 1 * *"
+  # Allow manual trigger from GitHub Actions UI
+  workflow_dispatch:
+
+jobs:
+  check:
+    name: Check holiday data coverage
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Check data coverage and open issue if needed
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+        run: |
+          NEXT_YEAR=$(( $(date +%Y) + 1 ))
+          DATA_FILE="data/holidays/${NEXT_YEAR}.json"
+
+          echo "Checking for: ${DATA_FILE}"
+
+          if [ -f "${DATA_FILE}" ]; then
+            echo "✓ ${DATA_FILE} exists — no action needed."
+            exit 0
+          fi
+
+          echo "✗ ${DATA_FILE} not found."
+
+          # Ensure the label exists (idempotent)
+          gh label create "data-update-needed" \
+            --description "Holiday data for a future year is missing and needs to be added" \
+            --color "E4E669" \
+            --repo "${REPO}" \
+            --force
+
+          # Check if an open issue for this year already exists — avoid duplicates
+          EXISTING=$(gh issue list \
+            --repo "${REPO}" \
+            --label "data-update-needed" \
+            --state open \
+            --search "Add holiday data for ${NEXT_YEAR}" \
+            --json number \
+            --jq 'length')
+
+          if [ "${EXISTING}" -gt 0 ]; then
+            echo "ℹ Issue for ${NEXT_YEAR} already exists — skipping."
+            exit 0
+          fi
+
+          # Create the reminder issue
+          gh issue create \
+            --repo "${REPO}" \
+            --title "Add holiday data for ${NEXT_YEAR}" \
+            --label "data-update-needed" \
+            --body "## Holiday data for ${NEXT_YEAR} is not yet available
+
+The scheduled data check found that \`data/holidays/${NEXT_YEAR}.json\` does not exist yet.
+
+### Checklist
+
+- [ ] Check [Kemenko PMK website](https://www.kemenkopmk.go.id/) for the official SKB (Surat Keputusan Bersama) decree for ${NEXT_YEAR}
+- [ ] Download the SKB PDF and place it in \`docs/sources/\`
+- [ ] Create \`data/holidays/${NEXT_YEAR}.json\` following the format described in [CONTRIBUTING.md](../blob/main/CONTRIBUTING.md)
+- [ ] Validate locally: \`bun run db:seed:local:fresh\`
+- [ ] Submit a PR with the new data file and PDF
+
+### Context
+
+- SKB decrees are typically published around September–October of the preceding year
+- If no decree has been published yet, this issue can remain open until one is available
+- Once \`data/holidays/${NEXT_YEAR}.json\` is merged into \`main\`, this issue can be closed"
+
+          echo "✓ Issue created for ${NEXT_YEAR}."
