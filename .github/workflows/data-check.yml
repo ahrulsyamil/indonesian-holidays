@@ -6,12 +6,18 @@ on:
     - cron: "0 9 1 * *"
   # Allow manual trigger from GitHub Actions UI
   workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Dry run - log output only, do not create issues"
+        required: false
+        default: "false"
 
 jobs:
   check:
     name: Check holiday data coverage
     runs-on: ubuntu-latest
     permissions:
+      contents: read
       issues: write
 
     steps:
@@ -24,15 +30,22 @@ jobs:
         run: |
           NEXT_YEAR=$(( $(date +%Y) + 1 ))
           DATA_FILE="data/holidays/${NEXT_YEAR}.json"
+          DRY_RUN="${{ github.event.inputs.dry_run || 'false' }}"
 
           echo "Checking for: ${DATA_FILE}"
+          echo "Dry run: ${DRY_RUN}"
 
           if [ -f "${DATA_FILE}" ]; then
-            echo "✓ ${DATA_FILE} exists — no action needed."
+            echo "OK: ${DATA_FILE} exists - no action needed."
             exit 0
           fi
 
-          echo "✗ ${DATA_FILE} not found."
+          echo "Missing: ${DATA_FILE} not found."
+
+          if [ "${DRY_RUN}" = "true" ]; then
+            echo "Dry run enabled - would create/update label and open reminder issue."
+            exit 0
+          fi
 
           # Ensure the label exists (idempotent)
           gh label create "data-update-needed" \
@@ -41,7 +54,7 @@ jobs:
             --repo "${REPO}" \
             --force
 
-          # Check if an open issue for this year already exists — avoid duplicates
+          # Check if an open issue for this year already exists - avoid duplicates
           EXISTING=$(gh issue list \
             --repo "${REPO}" \
             --label "data-update-needed" \
@@ -51,7 +64,7 @@ jobs:
             --jq 'length')
 
           if [ "${EXISTING}" -gt 0 ]; then
-            echo "ℹ Issue for ${NEXT_YEAR} already exists — skipping."
+            echo "Info: Issue for ${NEXT_YEAR} already exists - skipping."
             exit 0
           fi
 
@@ -74,8 +87,8 @@ The scheduled data check found that \`data/holidays/${NEXT_YEAR}.json\` does not
 
 ### Context
 
-- SKB decrees are typically published around September–October of the preceding year
+- SKB decrees are typically published around September-October of the preceding year
 - If no decree has been published yet, this issue can remain open until one is available
 - Once \`data/holidays/${NEXT_YEAR}.json\` is merged into \`main\`, this issue can be closed"
 
-          echo "✓ Issue created for ${NEXT_YEAR}."
+          echo "OK: Issue created for ${NEXT_YEAR}."
