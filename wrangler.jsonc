@@ -31,5 +31,23 @@
       "database_id": "5befbeba-3613-4cb5-99d8-4092e41b717f",
       "migrations_dir": "drizzle"
     }
-  ]
+  ],
+  // Rate limiting bindings (Cloudflare Workers only — not available in local dev).
+  // namespace_id is an arbitrary unique integer per binding.
+  "unsafe": {
+    "bindings": [
+      {
+        "name": "RATE_LIMIT_BURST",
+        "type": "ratelimit",
+        "namespace_id": "1001",
+        "simple": { "limit": 30, "period": 10 }
+      },
+      {
+        "name": "RATE_LIMIT_SUSTAINED",
+        "type": "ratelimit",
+        "namespace_id": "1002",
+        "simple": { "limit": 600, "period": 60 }
+      }
+    ]
+  }
 }

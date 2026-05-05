@@ -1,0 +1,51 @@
+name: Deploy
+
+on:
+  # Auto-deploy on every push to main
+  push:
+    branches: [main]
+  # Deploy on tagged releases (e.g. v1.0.0)
+  release:
+    types: [published]
+  # Manual deploy via GitHub Actions UI
+  workflow_dispatch:
+
+# Only one deploy runs at a time — never cancel an in-progress deploy
+concurrency:
+  group: deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Deploy to Cloudflare Workers
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Apply D1 migrations
+        run: bun x wrangler d1 migrations apply indonesian_holidays --remote
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+
+      # Safe: INSERT OR REPLACE for holidays (upsert), INSERT OR IGNORE for sources
+      # Running multiple times is idempotent — no duplicate data will be created
+      - name: Seed D1 data
+        run: bun run db:seed:prod
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+
+      - name: Deploy Worker
+        run: bun x wrangler deploy
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}

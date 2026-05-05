@@ -3,7 +3,9 @@ import { cors } from "hono/cors";
 import { logger } from "hono/logger";
 import { prettyJSON } from "hono/pretty-json";
 import type { Bindings } from "./env";
+import { cacheMiddleware } from "./lib/cache";
 import { serverError } from "./lib/errors";
+import { rateLimitMiddleware } from "./lib/rate-limit";
 import { docsRouter } from "./routes/docs";
 import { holidaysRouter } from "./routes/holidays";
 import { infoRouter } from "./routes/index";
@@ -16,6 +18,8 @@ const app = new Hono<{ Bindings: Bindings }>();
 app.use("*", logger());
 app.use("*", cors({ origin: "*", allowMethods: ["GET", "OPTIONS"], maxAge: 86400 }));
 app.use("*", prettyJSON());
+app.use("*", rateLimitMiddleware);
+app.use("*", cacheMiddleware);
 
 // ─── Routes ───────────────────────────────────────────────────────────────────
 

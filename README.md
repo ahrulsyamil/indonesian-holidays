@@ -1,6 +1,7 @@
 # Indonesian Holidays API
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![CI](https://github.com/ahrulsyamil/indonesian-holidays/actions/workflows/ci.yml/badge.svg)](https://github.com/ahrulsyamil/indonesian-holidays/actions/workflows/ci.yml)
 [![Bun](https://img.shields.io/badge/runtime-Bun-black?logo=bun)](https://bun.sh)
 [![Cloudflare Workers](https://img.shields.io/badge/deployed%20on-Cloudflare%20Workers-orange?logo=cloudflare)](https://workers.cloudflare.com)
 [![TypeScript](https://img.shields.io/badge/TypeScript-strict-blue?logo=typescript)](https://www.typescriptlang.org)
@@ -23,6 +24,8 @@ A public REST API providing Indonesian national holidays (hari libur nasional) a
 - Interactive API docs powered by Scalar at `/docs`
 - Zero authentication required — fully public
 - CORS open for all origins
+- Rate limited to prevent abuse (see [Rate Limits](#rate-limits))
+- Edge-cached via Cloudflare for fast global responses (see [Caching](#caching))
 
 ---
 
@@ -360,6 +363,60 @@ bun run cf-typegen
 | `bun run lint` | Run Biome linter |
 | `bun run lint:fix` | Auto-fix lint and formatting issues |
 | `bun run format` | Format all files with Biome |
+
+---
+
+## Rate Limits
+
+The API is rate limited per IP address to prevent abuse. No API key is required for normal usage.
+
+| Layer | Limit | Window | Response |
+|-------|-------|--------|----------|
+| Burst | 30 requests | 10 seconds | `429` with `Retry-After: 10` |
+| Sustained | 600 requests | 60 seconds | `429` with `Retry-After: 60` |
+
+The `/health` endpoint is exempt from rate limiting (for uptime monitors).
+
+When rate limited, the API returns:
+
+```json
+{
+  "error": {
+    "code": "RATE_LIMITED",
+    "message": "Too many requests. Please slow down and try again later."
+  }
+}
+```
+
+**Tip:** Consumer applications should cache holiday data on their side — yearly and monthly data does not change often. One request per year per deployment is the expected usage pattern.
+
+---
+
+## Caching
+
+All `GET` endpoints set standard `Cache-Control` headers. Cloudflare caches responses at the edge globally.
+
+| Endpoint | Cache TTL |
+|----------|-----------|
+| `/holidays/:year` | 24 hours |
+| `/holidays/:year/:month` | 24 hours |
+| `/sources` | 24 hours |
+| `/sources/:year` | 24 hours |
+| `/holidays/today` | 1 hour |
+| `/holidays/check` | 1 hour |
+| `/holidays` (range) | 1 hour |
+| `/openapi.json` | 1 hour |
+| `/docs` | 1 hour |
+| `/health` | No cache |
+
+You can inspect cache behavior via response headers:
+
+```
+Cache-Control: public, max-age=86400, s-maxage=86400, stale-while-revalidate=60
+X-Cache: HIT    # served from Cloudflare edge cache
+X-Cache: MISS   # fetched from the Worker
+Age: 3600       # seconds since the response was cached
+```
 
 ---
 
