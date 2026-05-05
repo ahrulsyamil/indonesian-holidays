@@ -10,6 +10,7 @@ Thank you for your interest in contributing. This guide covers everything you ne
 - [Ways to Contribute](#ways-to-contribute)
 - [Development Setup](#development-setup)
 - [Updating Holiday Data](#updating-holiday-data)
+- [Monthly Reminder Scheduler](#monthly-reminder-scheduler)
 - [Code Changes](#code-changes)
 - [Scripts Reference](#scripts-reference)
 - [Pull Request Guidelines](#pull-request-guidelines)
@@ -165,6 +166,22 @@ bun x wrangler d1 execute indonesian_holidays --local \
 2. Download the official PDF from [kemenkopmk.go.id](https://www.kemenkopmk.go.id) and save it to `docs/sources/`.
 3. Set `local_pdf` in the JSON to point to the saved PDF.
 4. Run the seed script to verify no validation errors.
+
+### Monthly reminder scheduler
+
+This repository includes a scheduled GitHub Actions workflow at `.github/workflows/data-check.yml`.
+
+- It runs monthly (1st day of each month at 09:00 UTC / 16:00 WIB).
+- It checks whether `data/holidays/{next_year}.json` exists.
+- If missing, it opens a GitHub issue labeled `data-update-needed` with a checklist for sourcing and adding official data.
+- It avoids duplicate reminder issues by checking existing open issues first.
+
+You can run it manually from GitHub Actions (`Holiday Data Check`) using `workflow_dispatch`.
+
+Manual run input:
+
+- `dry_run=true` to test detection logic without creating an issue.
+- `dry_run=false` to allow issue creation when data is missing.
 
 ---
 
