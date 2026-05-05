@@ -27,10 +27,11 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           REPO: ${{ github.repository }}
+          DRY_RUN_INPUT: ${{ github.event.inputs.dry_run }}
         run: |
           NEXT_YEAR=$(( $(date +%Y) + 1 ))
           DATA_FILE="data/holidays/${NEXT_YEAR}.json"
-          DRY_RUN="${{ github.event.inputs.dry_run || 'false' }}"
+          DRY_RUN="${DRY_RUN_INPUT:-false}"
 
           echo "Checking for: ${DATA_FILE}"
           echo "Dry run: ${DRY_RUN}"
