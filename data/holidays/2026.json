@@ -1,0 +1,197 @@
+{
+  "year": 2026,
+  "last_updated": "2025-09-19",
+  "sources": [
+    {
+      "type": "skb",
+      "title": "Keputusan Bersama Menteri Agama, Menteri Ketenagakerjaan, dan Menteri Pendayagunaan Aparatur Negara dan Reformasi Birokrasi tentang Hari Libur Nasional dan Cuti Bersama Tahun 2026",
+      "number": "1497 Tahun 2025, 2 Tahun 2025, 5 Tahun 2025",
+      "issued_by": [
+        "Kementerian Agama",
+        "Kementerian Ketenagakerjaan",
+        "Kementerian Pendayagunaan Aparatur Negara dan Reformasi Birokrasi"
+      ],
+      "issued_date": "2025-09-19",
+      "url": "https://www.kemenkopmk.go.id/sites/default/files/pengumuman/2025-09/SKB%20Libur%20Nasional%20dan%20Cuti%20Bersama%20Tahun%202026.pdf",
+      "archive_url": null,
+      "local_pdf": "docs/sources/SKB Libur Nasional dan Cuti Bersama Tahun 2026.pdf"
+    }
+  ],
+  "holidays": [
+    {
+      "date": "2026-01-01",
+      "name": "Tahun Baru Masehi",
+      "type": "national_holiday",
+      "is_national": true,
+      "description": "New Year's Day"
+    },
+    {
+      "date": "2026-01-16",
+      "name": "Isra Mi'raj Nabi Muhammad SAW",
+      "type": "national_holiday",
+      "is_national": true,
+      "description": "Ascension of the Prophet Muhammad"
+    },
+    {
+      "date": "2026-02-17",
+      "name": "Tahun Baru Imlek 2577 Kongzili",
+      "type": "national_holiday",
+      "is_national": true,
+      "description": "Chinese New Year"
+    },
+    {
+      "date": "2026-02-16",
+      "name": "Cuti Bersama Tahun Baru Imlek 2577 Kongzili",
+      "type": "joint_leave",
+      "is_national": false,
+      "description": null
+    },
+    {
+      "date": "2026-03-19",
+      "name": "Hari Suci Nyepi (Tahun Baru Saka 1948)",
+      "type": "national_holiday",
+      "is_national": true,
+      "description": "Balinese New Year (Day of Silence)"
+    },
+    {
+      "date": "2026-03-18",
+      "name": "Cuti Bersama Hari Suci Nyepi (Tahun Baru Saka 1948)",
+      "type": "joint_leave",
+      "is_national": false,
+      "description": null
+    },
+    {
+      "date": "2026-03-21",
+      "name": "Idul Fitri 1447 Hijriyah",
+      "type": "national_holiday",
+      "is_national": true,
+      "description": "Eid al-Fitr (1st day)"
+    },
+    {
+      "date": "2026-03-22",
+      "name": "Idul Fitri 1447 Hijriyah",
+      "type": "national_holiday",
+      "is_national": true,
+      "description": "Eid al-Fitr (2nd day)"
+    },
+    {
+      "date": "2026-03-20",
+      "name": "Cuti Bersama Idul Fitri",
+      "type": "joint_leave",
+      "is_national": false,
+      "description": null
+    },
+    {
+      "date": "2026-03-23",
+      "name": "Cuti Bersama Idul Fitri",
+      "type": "joint_leave",
+      "is_national": false,
+      "description": null
+    },
+    {
+      "date": "2026-03-24",
+      "name": "Cuti Bersama Idul Fitri",
+      "type": "joint_leave",
+      "is_national": false,
+      "description": null
+    },
+    {
+      "date": "2026-04-03",
+      "name": "Wafat Isa Al-Masih (Jumat Agung)",
+      "type": "national_holiday",
+      "is_national": true,
+      "description": "Good Friday"
+    },
+    {
+      "date": "2026-04-05",
+      "name": "Kebangkitan Isa Al-Masih (Paskah)",
+      "type": "national_holiday",
+      "is_national": true,
+      "description": "Easter Sunday"
+    },
+    {
+      "date": "2026-05-01",
+      "name": "Hari Buruh Internasional",
+      "type": "national_holiday",
+      "is_national": true,
+      "description": "International Workers' Day / Labour Day"
+    },
+    {
+      "date": "2026-05-14",
+      "name": "Kenaikan Isa Al-Masih",
+      "type": "national_holiday",
+      "is_national": true,
+      "description": "Ascension of Jesus Christ"
+    },
+    {
+      "date": "2026-05-15",
+      "name": "Cuti Bersama Kenaikan Isa Al-Masih",
+      "type": "joint_leave",
+      "is_national": false,
+      "description": null
+    },
+    {
+      "date": "2026-05-27",
+      "name": "Idul Adha 1447 Hijriyah",
+      "type": "national_holiday",
+      "is_national": true,
+      "description": "Eid al-Adha"
+    },
+    {
+      "date": "2026-05-28",
+      "name": "Cuti Bersama Idul Adha",
+      "type": "joint_leave",
+      "is_national": false,
+      "description": null
+    },
+    {
+      "date": "2026-05-31",
+      "name": "Hari Raya Waisak 2570 BE",
+      "type": "national_holiday",
+      "is_national": true,
+      "description": "Vesak Day"
+    },
+    {
+      "date": "2026-06-01",
+      "name": "Hari Lahir Pancasila",
+      "type": "national_holiday",
+      "is_national": true,
+      "description": "Pancasila Day"
+    },
+    {
+      "date": "2026-06-16",
+      "name": "Tahun Baru Islam 1448 Hijriyah",
+      "type": "national_holiday",
+      "is_national": true,
+      "description": "Islamic New Year"
+    },
+    {
+      "date": "2026-08-17",
+      "name": "Hari Kemerdekaan Republik Indonesia",
+      "type": "national_holiday",
+      "is_national": true,
+      "description": "Indonesian Independence Day"
+    },
+    {
+      "date": "2026-08-25",
+      "name": "Maulid Nabi Muhammad SAW",
+      "type": "national_holiday",
+      "is_national": true,
+      "description": "Birth of the Prophet Muhammad"
+    },
+    {
+      "date": "2026-12-24",
+      "name": "Cuti Bersama Natal",
+      "type": "joint_leave",
+      "is_national": false,
+      "description": null
+    },
+    {
+      "date": "2026-12-25",
+      "name": "Hari Raya Natal",
+      "type": "national_holiday",
+      "is_national": true,
+      "description": "Christmas Day"
+    }
+  ]
+}

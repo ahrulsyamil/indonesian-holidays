@@ -1,0 +1,7 @@
+# Copy this to .dev.vars (gitignored) for local secrets.
+# These are only needed for drizzle-kit studio / d1-http remote operations.
+# For wrangler dev (local D1), these are NOT required.
+
+CLOUDFLARE_ACCOUNT_ID=your_account_id
+CLOUDFLARE_DATABASE_ID=your_d1_database_id
+CLOUDFLARE_D1_TOKEN=your_api_token

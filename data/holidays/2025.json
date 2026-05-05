@@ -1,0 +1,232 @@
+{
+  "year": 2025,
+  "last_updated": "2025-08-07",
+  "sources": [
+    {
+      "type": "skb",
+      "title": "Keputusan Bersama Menteri Agama, Menteri Ketenagakerjaan, dan Menteri Pendayagunaan Aparatur Negara dan Reformasi Birokrasi tentang Hari Libur Nasional dan Cuti Bersama Tahun 2025",
+      "number": "1017 Tahun 2024, 2 Tahun 2024, 2 Tahun 2024",
+      "issued_by": [
+        "Kementerian Agama",
+        "Kementerian Ketenagakerjaan",
+        "Kementerian Pendayagunaan Aparatur Negara dan Reformasi Birokrasi"
+      ],
+      "issued_date": "2024-10-14",
+      "url": "https://www.kemenkopmk.go.id/sites/default/files/pengumuman/2024-10/SKB%203%20Menteri%20Libur%20Nasional%20dan%20Cuti%20Bersama%20Tahun%202025.pdf",
+      "archive_url": null,
+      "local_pdf": "docs/sources/SKB 3 Menteri Libur Nasional dan Cuti Bersama Tahun 2025.pdf"
+    },
+    {
+      "type": "revision",
+      "title": "Perubahan Atas Keputusan Bersama Menteri Agama, Menteri Ketenagakerjaan, dan Menteri Pendayagunaan Aparatur Negara dan Reformasi Birokrasi Nomor 1017 Tahun 2024, Nomor 2 Tahun 2024, Nomor 2 Tahun 2024 tentang Hari Libur Nasional dan Cuti Bersama Tahun 2025",
+      "number": "933 Tahun 2025, 1 Tahun 2025, 3 Tahun 2025",
+      "issued_by": [
+        "Kementerian Agama",
+        "Kementerian Ketenagakerjaan",
+        "Kementerian Pendayagunaan Aparatur Negara dan Reformasi Birokrasi"
+      ],
+      "issued_date": "2025-08-07",
+      "url": "https://www.kemenkopmk.go.id/sites/default/files/artikel/2025-08/SKB%20Perubahan%20Libur%20Nasional%20dan%20Cuti%20Bersama%20Tahun%202025.pdf",
+      "archive_url": null,
+      "local_pdf": "docs/sources/SKB Perubahan Libur Nasional dan Cuti Bersama Tahun 2025.pdf"
+    }
+  ],
+  "holidays": [
+    {
+      "date": "2025-01-01",
+      "name": "Tahun Baru Masehi",
+      "type": "national_holiday",
+      "is_national": true,
+      "description": "New Year's Day"
+    },
+    {
+      "date": "2025-01-27",
+      "name": "Isra Mi'raj Nabi Muhammad SAW",
+      "type": "national_holiday",
+      "is_national": true,
+      "description": "Ascension of the Prophet Muhammad"
+    },
+    {
+      "date": "2025-01-28",
+      "name": "Cuti Bersama Tahun Baru Imlek 2576 Kongzili",
+      "type": "joint_leave",
+      "is_national": false,
+      "description": null
+    },
+    {
+      "date": "2025-01-29",
+      "name": "Tahun Baru Imlek 2576 Kongzili",
+      "type": "national_holiday",
+      "is_national": true,
+      "description": "Chinese New Year"
+    },
+    {
+      "date": "2025-03-29",
+      "name": "Hari Suci Nyepi (Tahun Baru Saka 1947)",
+      "type": "national_holiday",
+      "is_national": true,
+      "description": "Balinese New Year (Day of Silence)"
+    },
+    {
+      "date": "2025-03-28",
+      "name": "Cuti Bersama Hari Suci Nyepi (Tahun Baru Saka 1947)",
+      "type": "joint_leave",
+      "is_national": false,
+      "description": null
+    },
+    {
+      "date": "2025-03-31",
+      "name": "Idul Fitri 1446 Hijriyah",
+      "type": "national_holiday",
+      "is_national": true,
+      "description": "Eid al-Fitr (1st day)"
+    },
+    {
+      "date": "2025-04-01",
+      "name": "Idul Fitri 1446 Hijriyah",
+      "type": "national_holiday",
+      "is_national": true,
+      "description": "Eid al-Fitr (2nd day)"
+    },
+    {
+      "date": "2025-04-02",
+      "name": "Cuti Bersama Idul Fitri",
+      "type": "joint_leave",
+      "is_national": false,
+      "description": null
+    },
+    {
+      "date": "2025-04-03",
+      "name": "Cuti Bersama Idul Fitri",
+      "type": "joint_leave",
+      "is_national": false,
+      "description": null
+    },
+    {
+      "date": "2025-04-04",
+      "name": "Cuti Bersama Idul Fitri",
+      "type": "joint_leave",
+      "is_national": false,
+      "description": null
+    },
+    {
+      "date": "2025-04-07",
+      "name": "Cuti Bersama Idul Fitri",
+      "type": "joint_leave",
+      "is_national": false,
+      "description": null
+    },
+    {
+      "date": "2025-04-18",
+      "name": "Wafat Isa Al-Masih (Jumat Agung)",
+      "type": "national_holiday",
+      "is_national": true,
+      "description": "Good Friday"
+    },
+    {
+      "date": "2025-04-20",
+      "name": "Kebangkitan Isa Al-Masih (Paskah)",
+      "type": "national_holiday",
+      "is_national": true,
+      "description": "Easter Sunday"
+    },
+    {
+      "date": "2025-05-01",
+      "name": "Hari Buruh Internasional",
+      "type": "national_holiday",
+      "is_national": true,
+      "description": "International Workers' Day / Labour Day"
+    },
+    {
+      "date": "2025-05-12",
+      "name": "Hari Raya Waisak 2569 BE",
+      "type": "national_holiday",
+      "is_national": true,
+      "description": "Vesak Day"
+    },
+    {
+      "date": "2025-05-13",
+      "name": "Cuti Bersama Waisak",
+      "type": "joint_leave",
+      "is_national": false,
+      "description": null
+    },
+    {
+      "date": "2025-05-29",
+      "name": "Kenaikan Isa Al-Masih",
+      "type": "national_holiday",
+      "is_national": true,
+      "description": "Ascension of Jesus Christ"
+    },
+    {
+      "date": "2025-05-30",
+      "name": "Cuti Bersama Kenaikan Isa Al-Masih",
+      "type": "joint_leave",
+      "is_national": false,
+      "description": null
+    },
+    {
+      "date": "2025-06-01",
+      "name": "Hari Lahir Pancasila",
+      "type": "national_holiday",
+      "is_national": true,
+      "description": "Pancasila Day"
+    },
+    {
+      "date": "2025-06-06",
+      "name": "Idul Adha 1446 Hijriyah",
+      "type": "national_holiday",
+      "is_national": true,
+      "description": "Eid al-Adha"
+    },
+    {
+      "date": "2025-06-09",
+      "name": "Cuti Bersama Idul Adha",
+      "type": "joint_leave",
+      "is_national": false,
+      "description": null
+    },
+    {
+      "date": "2025-06-27",
+      "name": "Tahun Baru Islam 1447 Hijriyah",
+      "type": "national_holiday",
+      "is_national": true,
+      "description": "Islamic New Year"
+    },
+    {
+      "date": "2025-08-17",
+      "name": "Hari Kemerdekaan Republik Indonesia",
+      "type": "national_holiday",
+      "is_national": true,
+      "description": "Indonesian Independence Day"
+    },
+    {
+      "date": "2025-08-18",
+      "name": "Cuti Bersama Hari Kemerdekaan",
+      "type": "joint_leave",
+      "is_national": false,
+      "description": "Ditetapkan via SKB revisi 7 Agustus 2025"
+    },
+    {
+      "date": "2025-09-05",
+      "name": "Maulid Nabi Muhammad SAW",
+      "type": "national_holiday",
+      "is_national": true,
+      "description": "Birth of the Prophet Muhammad"
+    },
+    {
+      "date": "2025-12-25",
+      "name": "Hari Raya Natal",
+      "type": "national_holiday",
+      "is_national": true,
+      "description": "Christmas Day"
+    },
+    {
+      "date": "2025-12-26",
+      "name": "Cuti Bersama Natal",
+      "type": "joint_leave",
+      "is_national": false,
+      "description": null
+    }
+  ]
+}

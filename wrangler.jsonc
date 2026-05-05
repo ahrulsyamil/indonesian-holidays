@@ -1,0 +1,21 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "indonesian-holidays",
+  "main": "src/index.ts",
+  "compatibility_date": "2025-05-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "observability": {
+    "enabled": true
+  },
+  // D1 database binding
+  // Run: bun x wrangler d1 create indonesian_holidays
+  // Then fill in the database_id below
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "indonesian_holidays",
+      "database_id": "5befbeba-3613-4cb5-99d8-4092e41b717f",
+      "migrations_dir": "drizzle"
+    }
+  ]
+}
