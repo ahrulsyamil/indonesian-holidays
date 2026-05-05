@@ -28,6 +28,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           REPO: ${{ github.repository }}
           DRY_RUN_INPUT: ${{ github.event.inputs.dry_run }}
+        shell: bash
         run: |
           NEXT_YEAR=$(( $(date +%Y) + 1 ))
           DATA_FILE="data/holidays/${NEXT_YEAR}.json"
@@ -69,27 +70,31 @@ jobs:
             exit 0
           fi
 
-          # Create the reminder issue
+          # Create the reminder issue body safely without fragile shell quoting.
+          cat > issue-body.md <<EOF
+          ## Holiday data for ${NEXT_YEAR} is not yet available
+
+          The scheduled data check found that \`data/holidays/${NEXT_YEAR}.json\` does not exist yet.
+
+          ### Checklist
+
+          - [ ] Check [Kemenko PMK website](https://www.kemenkopmk.go.id/) for the official SKB (Surat Keputusan Bersama) decree for ${NEXT_YEAR}
+          - [ ] Download the SKB PDF and place it in \`docs/sources/\`
+          - [ ] Create \`data/holidays/${NEXT_YEAR}.json\` following the format described in [CONTRIBUTING.md](../blob/main/CONTRIBUTING.md)
+          - [ ] Validate locally: \`bun run db:seed:local:fresh\`
+          - [ ] Submit a PR with the new data file and PDF
+
+          ### Context
+
+          - SKB decrees are typically published around September-October of the preceding year
+          - If no decree has been published yet, this issue can remain open until one is available
+          - Once \`data/holidays/${NEXT_YEAR}.json\` is merged into \`main\`, this issue can be closed
+          EOF
+
           gh issue create \
             --repo "${REPO}" \
             --title "Add holiday data for ${NEXT_YEAR}" \
             --label "data-update-needed" \
-            --body "## Holiday data for ${NEXT_YEAR} is not yet available
-
-The scheduled data check found that \`data/holidays/${NEXT_YEAR}.json\` does not exist yet.
-
-### Checklist
-
-- [ ] Check [Kemenko PMK website](https://www.kemenkopmk.go.id/) for the official SKB (Surat Keputusan Bersama) decree for ${NEXT_YEAR}
-- [ ] Download the SKB PDF and place it in \`docs/sources/\`
-- [ ] Create \`data/holidays/${NEXT_YEAR}.json\` following the format described in [CONTRIBUTING.md](../blob/main/CONTRIBUTING.md)
-- [ ] Validate locally: \`bun run db:seed:local:fresh\`
-- [ ] Submit a PR with the new data file and PDF
-
-### Context
-
-- SKB decrees are typically published around September-October of the preceding year
-- If no decree has been published yet, this issue can remain open until one is available
-- Once \`data/holidays/${NEXT_YEAR}.json\` is merged into \`main\`, this issue can be closed"
+            --body-file issue-body.md
 
           echo "OK: Issue created for ${NEXT_YEAR}."
