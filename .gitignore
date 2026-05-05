@@ -11,6 +11,8 @@ dist/
 
 # bun
 bun.lockb
+# npm lockfile — this project uses bun, not npm
+package-lock.json
 
 # misc
 .DS_Store

@@ -1,7 +1,7 @@
 version: 2
 updates:
-  # npm dependencies — grouped to reduce PR noise
-  - package-ecosystem: npm
+  # Bun dependencies — grouped to reduce PR noise
+  - package-ecosystem: bun
     directory: /
     schedule:
       interval: weekly
