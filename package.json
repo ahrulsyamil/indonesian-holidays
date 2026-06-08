@@ -23,21 +23,21 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@hono/zod-openapi": "1.3.0",
-    "@scalar/hono-api-reference": "0.10.13",
+    "@hono/zod-openapi": "1.4.0",
+    "@scalar/hono-api-reference": "0.10.20",
     "drizzle-orm": "0.45.2",
-    "hono": "4.12.15",
+    "hono": "4.12.23",
     "zod": "3.25.76"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
     "@cloudflare/vitest-pool-workers": "0.8.71",
-    "@cloudflare/workers-types": "4.20260504.1",
-    "@types/bun": "^1.3.13",
-    "@types/node": "^25.6.0",
+    "@cloudflare/workers-types": "4.20260608.1",
+    "@types/bun": "^1.3.14",
+    "@types/node": "^25.9.2",
     "drizzle-kit": "0.31.10",
     "typescript": "^6.0.3",
-    "vitest": "3.2.4",
-    "wrangler": "4.87.0"
+    "vitest": "3.2.6",
+    "wrangler": "4.98.0"
   }
 }
